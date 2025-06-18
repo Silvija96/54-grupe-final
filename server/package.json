@@ -1,5 +1,20 @@
 {
-  "dependencies": {
-    "dead-server": "^1.0.9"
-  }
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node --watch ./index.js --env=.env.development",
+        "prod": "node ./index.js --env=.env.production",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "R",
+    "license": "MIT",
+    "dependencies": {
+        "54-grupe-final": "file:..",
+        "dotenv": "^16.5.0",
+        "express": "^5.1.0"
+    }
 }
