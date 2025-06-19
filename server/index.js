@@ -1,16 +1,12 @@
 import express from 'express';
+import { apiRouter } from './routes/ApiRouter.js';
 
 const app = express();
 const PORT = 5417;
 
 app.use(express.static('public'));
 
-app.get('/api', (req, res) => {
-    return res.json({
-        status: 'success',
-        msg: 'API is working',
-    });
-});
+app.use('/api', apiRouter);
 
 app.get('*error', (req, res) => {
     return res.status(404).json({

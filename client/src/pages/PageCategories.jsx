@@ -1,8 +1,9 @@
+import { AllCategories } from "../components/categories/AllCategories";
 
 export function PageCategories() {
     return (
         <>
-            CATEGORIES PAGE CONTENT
+            <AllCategories />
         </>
     )
 }
