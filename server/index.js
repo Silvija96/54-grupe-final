@@ -1,12 +1,16 @@
 import express from 'express';
-import { apiRouter } from './routes/ApiRouter.js';
+import cors from 'cors';
+import { apiRouter } from './routes/apiRouter.js';
+import { PORT_CLIENT, PORT_SERVER } from './env.js';
 
 const app = express();
-const PORT = 5417;
+const corsOptions = {
+    origin: 'http://localhost:' + PORT_CLIENT,
+};
 
 app.use(express.static('public'));
 
-app.use('/api', apiRouter);
+app.use('/api', cors(corsOptions), apiRouter);
 
 app.get('*error', (req, res) => {
     return res.status(404).json({
@@ -15,6 +19,6 @@ app.get('*error', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server: http://localhost:${PORT}`);
+app.listen(PORT_SERVER, () => {
+    console.log(`Server: http://localhost:${PORT_SERVER}`);
 });
