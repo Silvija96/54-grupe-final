@@ -9,6 +9,9 @@ const corsOptions = {
 };
 
 app.use(express.static('public'));
+app.use(express.json({
+    limit: '4kb',
+}));
 
 app.use('/api', cors(corsOptions), apiRouter);
 
