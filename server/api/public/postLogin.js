@@ -1,7 +1,7 @@
-import { connection } from "../db.js";
-import { hash } from "../lib/hash.js";
-import { IsValid } from "../lib/IsValid.js";
-import { randomString } from "../lib/randomString.js";
+import { connection } from "../../db.js";
+import { hash } from "../../lib/hash.js";
+import { IsValid } from "../../lib/IsValid.js";
+import { randomString } from "../../lib/randomString.js";
 
 export async function postLogin(req, res) {
     const [err, msg] = IsValid.requiredFields(req.body, [
@@ -83,5 +83,9 @@ export async function postLogin(req, res) {
         .json({
             status: 'success',
             msg: 'Jus buvote sekmingai prijungti prie sistemos',
+            user: {
+                id: userObj.id,
+                email: email,
+            },
         });
 }
