@@ -5,6 +5,7 @@ import { UserContext } from "../user/UserContext";
 
 export function CategoriesContextWrapper(props) {
     const [categories, setCategories] = useState(initialCategoriesContext.categories);
+    const [featuredCategories, setFeaturedCategories] = useState(initialCategoriesContext.featuredCategories);
 
     const { isLoggedIn } = useContext(UserContext);
 
@@ -28,6 +29,20 @@ export function CategoriesContextWrapper(props) {
             .catch(console.error);
     }, [isLoggedIn]);
 
+    useEffect(() => {
+        fetch('http://localhost:5417/api/public/categories/featured', {
+            method: 'GET',
+            credentials: 'include',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    setFeaturedList(data.list);
+                }
+            })
+            .catch(console.error);
+    }, []);
+
     function setList(data) {
         setCategories(() => data);
     }
@@ -41,12 +56,18 @@ export function CategoriesContextWrapper(props) {
     function remove() {
     }
 
+    function setFeaturedList(data) {
+        setFeaturedCategories(() => data);
+    }
+
     const value = {
         categories,
+        featuredCategories,
         setList,
         create,
         edit,
         remove,
+        setFeaturedList,
     };
 
     return (
