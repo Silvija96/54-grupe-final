@@ -1,8 +1,6 @@
 import { CategoryTableRow } from "./CategoryTableRow";
 
-export function CategoriesTable() {
-    const data = [];
-
+export function CategoriesTable({ data }) {
     return (
         <div className="table-responsive small">
             <table className="table table-striped table-sm">
