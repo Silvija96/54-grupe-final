@@ -9,7 +9,7 @@ export function PageCategoryInner() {
     const [moviesData, setMoviesData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5417/api/movies-by-category/' + params.category, {
+        fetch('http://localhost:5417/api/public/movies-by-category/' + params.category, {
             method: 'GET',
         })
             .then(res => res.json())

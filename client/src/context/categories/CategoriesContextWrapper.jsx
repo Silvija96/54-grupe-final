@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { initialCategoriesContext } from "./initialCategoriesContext";
 import { CategoriesContext } from "./CategoriesContext";
+import { UserContext } from "../user/UserContext";
 
 export function CategoriesContextWrapper(props) {
     const [categories, setCategories] = useState(initialCategoriesContext.categories);
 
+    const { isLoggedIn } = useContext(UserContext);
+
     useEffect(() => {
-        fetch('http://localhost:5417/api/admin/categories', {
+        let apiUrl = 'http://localhost:5417/api/public/categories';
+
+        if (isLoggedIn) {
+            apiUrl = 'http://localhost:5417/api/admin/categories';
+        }
+
+        fetch(apiUrl, {
             method: 'GET',
             credentials: 'include',
         })
@@ -17,7 +26,7 @@ export function CategoriesContextWrapper(props) {
                 }
             })
             .catch(console.error);
-    }, []);
+    }, [isLoggedIn]);
 
     function setList(data) {
         setCategories(() => data);

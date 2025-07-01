@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { initialMoviesContext } from "./initialMoviesContext";
 import { MoviesContext } from "./MoviesContext";
+import { UserContext } from "../user/UserContext";
 
 export function MoviesContextWrapper(props) {
     const [movies, setMovies] = useState(initialMoviesContext.movies);
 
+    const { isLoggedIn } = useContext(UserContext);
+
     useEffect(() => {
-        fetch('http://localhost:5417/api/admin/movies', {
+        let apiUrl = 'http://localhost:5417/api/public/movies';
+
+        if (isLoggedIn) {
+            apiUrl = 'http://localhost:5417/api/admin/movies';
+        }
+
+        fetch(apiUrl, {
             method: 'GET',
             credentials: 'include',
         })
@@ -17,7 +26,7 @@ export function MoviesContextWrapper(props) {
                 }
             })
             .catch(console.error);
-    }, []);
+    }, [isLoggedIn]);
 
     function setList(data) {
         setMovies(() => data);

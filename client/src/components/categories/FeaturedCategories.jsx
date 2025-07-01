@@ -5,7 +5,7 @@ export function FeaturedCategories() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5417/api/categories/featured', {
+        fetch('http://localhost:5417/api/public/categories/featured', {
             method: 'GET',
         })
             .then(res => res.json())

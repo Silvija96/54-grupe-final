@@ -9,7 +9,7 @@ export function PageMovieInner() {
 
     useEffect(() => {
         if (!movieData.length) {
-            fetch('http://localhost:5417/api/movies/' + params.movie, {
+            fetch('http://localhost:5417/api/public/movies/' + params.movie, {
                 method: 'GET',
             })
                 .then(res => res.json())
