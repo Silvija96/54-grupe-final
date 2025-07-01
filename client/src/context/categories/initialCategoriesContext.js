@@ -1,10 +1,11 @@
+
 export const initialCategoriesContext = {
     publicCategories: [],
     featuredCategories: [],
     adminCategories: [],
-    setPublicList: () => { },
-    setFeaturedList: () => { },
-    setAdminList: () => { },
+    setPublicCategoriesList: () => { },
+    setFeaturedCategoriesList: () => { },
+    setAdminCategoriesList: () => { },
     adminCreateCategory: () => { },
     adminEditCategory: () => { },
     adminRemoveCategory: () => { },
