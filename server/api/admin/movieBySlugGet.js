@@ -1,6 +1,7 @@
+
 import { connection } from "../../db.js";
 
-export async function getMovieBySlug(req, res) {
+export async function movieBySlugGet(req, res) {
     try {
         const sql = `
             SELECT movies.*,

@@ -18,9 +18,10 @@ export function MoviesTable({ data }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(item => <MoviesTableRow key={item.id} data={item} />)}
+                    {data.map(item => <MoviesTableRow key={item.id} movie={item} />)}
                 </tbody>
             </table>
         </div>
     );
 }
+
